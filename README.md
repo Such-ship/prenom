@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Baby Name Tournament
 
-## Getting Started
+A fun and interactive application to help parents choose the perfect baby name through a tournament-style selection process.
 
-First, run the development server:
+## Features
+
+- **Gender Selection**: Choose between boy and girl names
+- **Name Type Selection**: Select from classic, modern, trendy, or custom names
+- **Custom Names**: Upload your own list of baby names
+- **Tournament Style**: Compare names head-to-head to find your favorite
+- **Tournament History**: View the progression of your selection process
+- **Responsive Design**: Works on desktop and mobile devices
+
+## How to Use
+
+1. Select the gender for your baby (boy or girl)
+2. Choose the type of names you're interested in:
+   - Classic: Traditional, time-tested names
+   - Modern: Contemporary popular names
+   - Trendy: Unique, up-and-coming names
+   - Custom: Upload your own list of names
+3. If selecting "Custom", upload a text file with one name per line
+4. Choose how many name candidates you want in your tournament (2-64)
+5. Click "Start Tournament" to begin
+6. For each matchup, click on the name you prefer
+7. Continue until you have a winning name!
+8. View the tournament recap to see your selection process
+9. Start a new tournament if you want to try again
+
+## Technology
+
+This project is built with:
+
+- [Next.js](https://nextjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [React](https://reactjs.org/)
+
+## Development
+
+### Prerequisites
+
+- Node.js 18.17 or later
+
+### Getting Started
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   yarn install
+   ```
+3. Run the development server:
+   ```bash
+   yarn dev
+   ```
+4. Open [http://localhost:3000](http://localhost:3000) in your browser
+
+### Build
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+yarn build
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
