@@ -1,8 +1,13 @@
-export type NameCategory = "classic" | "modern" | "trendy" | "custom";
+export type NameCategory =
+  | "classic"
+  | "modern"
+  | "trendy"
+  | "allTypes"
+  | "custom";
 export type Gender = "boy" | "girl";
 export type NameData = {
   [key in Gender]: {
-    [category in Exclude<NameCategory, "custom">]: string[];
+    [category in Exclude<NameCategory, "custom" | "allTypes">]: string[];
   };
 };
 
@@ -437,6 +442,16 @@ export function getNames(
 ): string[] {
   if (category === "custom" && customNames) {
     return shuffleArray(customNames).slice(0, count);
+  }
+
+  if (category === "allTypes") {
+    // Combine all name types for the selected gender
+    const allNames = [
+      ...names[gender].classic,
+      ...names[gender].modern,
+      ...names[gender].trendy,
+    ];
+    return shuffleArray(allNames).slice(0, count);
   }
 
   if (category !== "custom" && names[gender] && names[gender][category]) {

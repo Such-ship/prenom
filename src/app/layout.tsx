@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import { translations } from "@/data/translations";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Baby Name Tournament - Find the Perfect Name",
-  description:
-    "A fun and interactive way to choose the perfect baby name through a tournament-style selection process.",
+  title: translations.siteTitle,
+  description: translations.siteDescription,
 };
 
 export default function RootLayout({
@@ -16,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="fr">
       <body className={inter.className}>{children}</body>
     </html>
   );

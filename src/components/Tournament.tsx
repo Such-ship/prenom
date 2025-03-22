@@ -1,11 +1,12 @@
 import React from "react";
 import { useGameContext } from "@/context/GameContext";
+import { translations } from "@/data/translations";
 
 const Tournament: React.FC = () => {
   const { tournament, selectWinner } = useGameContext();
 
   if (!tournament) {
-    return <div>Loading tournament...</div>;
+    return <div>{translations.loadingTournament}</div>;
   }
 
   const { rounds, currentRound, currentMatchup } = tournament;
@@ -16,18 +17,20 @@ const Tournament: React.FC = () => {
   const roundName =
     totalRounds > 1
       ? currentRound === totalRounds - 1
-        ? "Final"
+        ? translations.final
         : currentRound === totalRounds - 2
-        ? "Semi-final"
-        : `Round ${currentRound + 1}`
-      : "Final";
+        ? translations.semifinal
+        : translations.round.replace("{number}", (currentRound + 1).toString())
+      : translations.final;
 
   return (
     <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-lg">
       <div className="text-center mb-6">
         <h2 className="text-2xl font-bold">{roundName}</h2>
         <p className="text-gray-600">
-          Matchup {currentMatchup + 1} of {currentRoundData.matchups.length}
+          {translations.matchup
+            .replace("{current}", (currentMatchup + 1).toString())
+            .replace("{total}", currentRoundData.matchups.length.toString())}
         </p>
         <div className="mt-2 w-full bg-gray-200 h-2 rounded-full overflow-hidden">
           <div
@@ -42,7 +45,7 @@ const Tournament: React.FC = () => {
       </div>
 
       <div className="text-center mb-4">
-        <p className="text-lg font-medium">Which name do you prefer?</p>
+        <p className="text-lg font-medium">{translations.whichNamePrefer}</p>
       </div>
 
       <div className="flex space-x-4">
@@ -67,8 +70,10 @@ const Tournament: React.FC = () => {
 
       <div className="text-center mt-8">
         <p className="text-sm text-gray-500">
-          Round {currentRound + 1} of {totalRounds} •{" "}
-          {rounds[0].matchups.length * 2} total names
+          {translations.roundInfo
+            .replace("{current}", (currentRound + 1).toString())
+            .replace("{total}", totalRounds.toString())
+            .replace("{nameCount}", (rounds[0].matchups.length * 2).toString())}
         </p>
       </div>
     </div>

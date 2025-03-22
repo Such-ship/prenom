@@ -2,6 +2,7 @@ import React, { useState, ChangeEvent } from "react";
 import { useGameContext } from "@/context/GameContext";
 import { GameState } from "@/types";
 import { NameCategory, Gender } from "@/data/names";
+import { translations } from "@/data/translations";
 
 // Powers of two options for candidates
 const CANDIDATE_OPTIONS = [2, 4, 8, 16, 32, 64];
@@ -61,7 +62,7 @@ const SetupForm: React.FC = () => {
 
     // Validate custom names if needed
     if (settings.nameType === "custom" && settings.customNames.length < 2) {
-      alert("You need at least 2 names in your custom list.");
+      alert(translations.customNamesValidation);
       return;
     }
 
@@ -72,12 +73,14 @@ const SetupForm: React.FC = () => {
   return (
     <div className="max-w-md mx-auto p-6 bg-white rounded-lg shadow-lg">
       <h2 className="text-2xl font-bold mb-6 text-center">
-        Baby Name Tournament
+        {translations.tournamentTitle}
       </h2>
 
       <form onSubmit={handleSubmit}>
         <div className="mb-6">
-          <label className="block mb-2 font-medium">Gender</label>
+          <label className="block mb-2 font-medium">
+            {translations.gender}
+          </label>
           <div className="flex space-x-4">
             <label className="flex items-center">
               <input
@@ -88,7 +91,7 @@ const SetupForm: React.FC = () => {
                 onChange={handleGenderChange}
                 className="mr-2"
               />
-              <span>Boy</span>
+              <span>{translations.boy}</span>
             </label>
             <label className="flex items-center">
               <input
@@ -99,29 +102,32 @@ const SetupForm: React.FC = () => {
                 onChange={handleGenderChange}
                 className="mr-2"
               />
-              <span>Girl</span>
+              <span>{translations.girl}</span>
             </label>
           </div>
         </div>
 
         <div className="mb-6">
-          <label className="block mb-2 font-medium">Name Type</label>
+          <label className="block mb-2 font-medium">
+            {translations.nameType}
+          </label>
           <select
             value={settings.nameType}
             onChange={handleTypeChange}
             className="w-full p-2 border rounded"
           >
-            <option value="classic">Classic</option>
-            <option value="modern">Modern</option>
-            <option value="trendy">Trendy</option>
-            <option value="custom">Custom (Upload)</option>
+            <option value="classic">{translations.classic}</option>
+            <option value="modern">{translations.modern}</option>
+            <option value="trendy">{translations.trendy}</option>
+            <option value="allTypes">{translations.allTypes}</option>
+            <option value="custom">{translations.custom}</option>
           </select>
         </div>
 
         {settings.nameType === "custom" && (
           <div className="mb-6">
             <label className="block mb-2 font-medium">
-              Upload Custom Names
+              {translations.uploadCustomNames}
             </label>
             <input
               type="file"
@@ -130,12 +136,12 @@ const SetupForm: React.FC = () => {
               className="w-full p-2 border rounded"
             />
             <p className="text-sm text-gray-500 mt-1">
-              Upload a text file with one name per line
+              {translations.uploadTxtFile}
             </p>
             {fileContent && (
               <div className="mt-2">
                 <p className="font-medium">
-                  Names loaded: {settings.customNames.length}
+                  {translations.namesLoaded} {settings.customNames.length}
                 </p>
                 <div className="mt-1 p-2 border rounded max-h-40 overflow-y-auto">
                   <ul className="list-disc pl-5">
@@ -145,7 +151,10 @@ const SetupForm: React.FC = () => {
                   </ul>
                   {settings.customNames.length > 5 && (
                     <p className="text-sm text-gray-500 mt-1">
-                      ...and {settings.customNames.length - 5} more
+                      {translations.andMore.replace(
+                        "{count}",
+                        (settings.customNames.length - 5).toString()
+                      )}
                     </p>
                   )}
                 </div>
@@ -155,7 +164,9 @@ const SetupForm: React.FC = () => {
         )}
 
         <div className="mb-6">
-          <label className="block mb-2 font-medium">Number of Candidates</label>
+          <label className="block mb-2 font-medium">
+            {translations.numberOfCandidates}
+          </label>
           <select
             value={settings.candidates}
             onChange={handleCandidatesChange}
@@ -168,7 +179,7 @@ const SetupForm: React.FC = () => {
             ))}
           </select>
           <p className="text-sm text-gray-500 mt-1">
-            Choose a power of 2 for perfect tournament brackets
+            {translations.powerOf2Explanation}
           </p>
         </div>
 
@@ -177,7 +188,7 @@ const SetupForm: React.FC = () => {
             type="submit"
             className="w-full py-2 px-4 bg-blue-600 text-white font-medium rounded hover:bg-blue-700 transition duration-200"
           >
-            Start Tournament
+            {translations.startTournament}
           </button>
         </div>
       </form>

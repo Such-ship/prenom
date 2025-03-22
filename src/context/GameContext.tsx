@@ -45,7 +45,7 @@ function createTournament(names: string[]): Tournament {
 // Create context with default values
 const defaultSettings: GameSettings = {
   gender: "boy",
-  nameType: "classic",
+  nameType: "allTypes",
   candidates: 8,
   customNames: [],
 };
